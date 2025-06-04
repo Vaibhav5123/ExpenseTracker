@@ -5,47 +5,56 @@
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="bg-white shadow-sm rounded-lg p-4">
+            <div class="bg-white shadow-sm rounded-lg p-6">
 
-                {{-- Optional Add Button --}}
-                <div class="flex justify-end mb-3">
-                    {{-- <a href="{{ route('users.create') }}" class="btn btn-primary">+ Add User</a> --}}
+                <!-- Optional Add User Button -->
+                <div class="flex justify-end mb-4">
+                    {{-- <a href="{{ route('users.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition">+ Add User</a> --}}
                 </div>
 
-                <table class="table table-bordered w-full">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($users as $index => $user)
+                <!-- Users Table -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200 text-sm text-left">
+                        <thead class="bg-gray-100">
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->role->name ?? '-' }}</td>
-                                <td>
-                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">View</a>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </td>
+                                <th class="px-4 py-2 font-medium text-gray-600">#</th>
+                                <th class="px-4 py-2 font-medium text-gray-600">Name</th>
+                                <th class="px-4 py-2 font-medium text-gray-600">Email</th>
+                                <th class="px-4 py-2 font-medium text-gray-600">Role</th>
+                                <th class="px-4 py-2 font-medium text-gray-600">Actions</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-100">
+                            @foreach($users as $index => $user)
+                                <tr>
+                                    <td class="px-4 py-2">{{ $index + 1 }}</td>
+                                    <td class="px-4 py-2">{{ $user->name }}</td>
+                                    <td class="px-4 py-2">{{ $user->email }}</td>
+                                    <td class="px-4 py-2">{{ $user->role->name ?? '-' }}</td>
+                                    <td class="px-4 py-2 space-x-1">
+                                        <a href="{{ route('users.show', $user->id) }}"
+                                           class="inline-block px-3 py-1 text-xs text-white bg-blue-500 rounded hover:bg-blue-600">View</a>
+                                        <a href="{{ route('users.edit', $user->id) }}"
+                                           class="inline-block px-3 py-1 text-xs text-white bg-yellow-500 rounded hover:bg-yellow-600">Edit</a>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                              class="inline-block"
+                                              onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="px-3 py-1 text-xs text-white bg-red-600 rounded hover:bg-red-700">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-                <div class="d-flex justify-content-center mt-4">
+                <!-- Pagination -->
+                <div class="mt-4">
                     {{ $users->links() }}
                 </div>
             </div>
