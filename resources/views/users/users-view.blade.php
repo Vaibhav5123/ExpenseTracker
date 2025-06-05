@@ -1,16 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">All Users</h2>
-    </x-slot>
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto px-4">
             <div class="bg-white shadow-sm rounded-lg p-6">
-
-                <!-- Optional Add User Button -->
-                <div class="flex justify-end mb-4">
-                    {{-- <a href="{{ route('users.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition">+ Add User</a> --}}
-                </div>
 
                 <!-- Users Table -->
                 <div class="overflow-x-auto">

@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
     <div class="py-12 space-y-6">
         {{-- Summary Cards --}}
@@ -50,6 +45,6 @@
                     <li class="py-3 text-gray-500 text-center">No transactions found.</li>
                 @endforelse
             </ul>
-        </div>
+        </div>      
     </div>
 </x-app-layout>
